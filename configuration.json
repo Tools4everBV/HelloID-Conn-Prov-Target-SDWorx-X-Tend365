@@ -1,0 +1,43 @@
+[
+  {
+    "key": "ClientId",
+    "type": "input",
+    "defaultValue": "",
+    "templateOptions": {
+      "label": "ClientId",
+      "description": "The client id to connect to the API",
+      "required": true
+    }
+  },
+  {
+    "key": "ClientSecret",
+    "type": "input",
+    "defaultValue": "",
+    "templateOptions": {
+      "type": "password",
+      "label": "ClientSecret",
+      "description": "The client secret to connect to the API",
+      "required": true
+    }
+  },
+  {
+    "key": "TenantId",
+    "type": "input",
+    "defaultValue": "",
+    "templateOptions": {
+      "label": "TenantId",
+      "description": "The tenant id to connect to the API",
+      "required": true
+    }
+  },
+  {
+    "key": "BaseUrl",
+    "type": "input",
+    "defaultValue": "",
+    "templateOptions": {
+      "label": "BaseUrl",
+      "description": "The URL to the API.",
+      "required": true
+    }
+  }
+]
