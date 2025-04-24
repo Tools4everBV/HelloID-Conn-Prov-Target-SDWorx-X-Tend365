@@ -1,5 +1,5 @@
 #################################################
-# HelloID-Conn-Prov-Target-X-Trend-Update
+# HelloID-Conn-Prov-Target-X-Tend-Update
 # PowerShell V2
 #################################################
 
@@ -7,7 +7,7 @@
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor [System.Net.SecurityProtocolType]::Tls12
 
 #region functions
-function Resolve-X-TrendError {
+function Resolve-X-TendError {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
@@ -65,7 +65,7 @@ try {
     }
     $accessToken = (Invoke-RestMethod @splatGetToken).access_token
 
-    Write-Information 'Verifying if a X-Trend account exists'
+    Write-Information 'Verifying if a X-Tend account exists'
     $headers = @{
         Authorization  = "Bearer $($accessToken)"
         Accept         = 'application/json; charset=utf-8'
@@ -97,7 +97,7 @@ try {
     switch ($action) {
         'UpdateAccount' {
             if (-not($actionContext.DryRun -eq $true)) {
-                Write-Information "Updating X-Trend account with accountReference: [$($actionContext.References.Account)]"
+                Write-Information "Updating X-Tend account with accountReference: [$($actionContext.References.Account)]"
 
                 $splatUpdateAccount = @{
                     Uri     = "$($actionContext.Configuration.BaseUrl)/data/SDWorkers(PersonnelNumber='$($actionContext.References.Account)')"
@@ -107,7 +107,7 @@ try {
                 }
                 $null = Invoke-RestMethod @splatUpdateAccount
             } else {
-                Write-Information "[DryRun] Update X-Trend account with accountReference: [$($actionContext.References.Account)], will be executed during enforcement"
+                Write-Information "[DryRun] Update X-Tend account with accountReference: [$($actionContext.References.Account)], will be executed during enforcement"
             }
 
             $outputContext.Success = $true
@@ -119,10 +119,10 @@ try {
         }
 
         'NotFound' {
-            Write-Information "X-Trend account: [$($actionContext.References.Account)] could not be found, possibly indicating that it could be deleted"
+            Write-Information "X-Tend account: [$($actionContext.References.Account)] could not be found, possibly indicating that it could be deleted"
             $outputContext.Success = $false
             $outputContext.AuditLogs.Add([PSCustomObject]@{
-                    Message = "X-Trend account with accountReference: [$($actionContext.References.Account)] could not be found, possibly indicating that it could be deleted"
+                    Message = "X-Tend account with accountReference: [$($actionContext.References.Account)] could not be found, possibly indicating that it could be deleted"
                     IsError = $true
                 })
             break
@@ -133,11 +133,11 @@ try {
     $ex = $PSItem
     if ($($ex.Exception.GetType().FullName -eq 'Microsoft.PowerShell.Commands.HttpResponseException') -or
         $($ex.Exception.GetType().FullName -eq 'System.Net.WebException')) {
-        $errorObj = Resolve-X-TrendError -ErrorObject $ex
-        $auditMessage = "Could not update X-Trend account. Error: $($errorObj.FriendlyMessage)"
+        $errorObj = Resolve-X-TendError -ErrorObject $ex
+        $auditMessage = "Could not update X-Tend account. Error: $($errorObj.FriendlyMessage)"
         Write-Warning "Error at Line '$($errorObj.ScriptLineNumber)': $($errorObj.Line). Error: $($errorObj.FriendlyMessage)"
     } else {
-        $auditMessage = "Could not update X-Trend account. Error: $($ex.Exception.Message)"
+        $auditMessage = "Could not update X-Tend account. Error: $($ex.Exception.Message)"
         Write-Warning "Error at Line '$($ex.InvocationInfo.ScriptLineNumber)': $($ex.InvocationInfo.Line). Error: $($ex.Exception.Message)"
     }
     $outputContext.AuditLogs.Add([PSCustomObject]@{

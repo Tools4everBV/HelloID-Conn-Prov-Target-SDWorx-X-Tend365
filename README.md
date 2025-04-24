@@ -1,4 +1,4 @@
-# HelloID-Conn-Prov-Target-X-Trend
+# HelloID-Conn-Prov-Target-X-Tend
 
 > [!IMPORTANT]
 > This repository contains the connector and configuration code only. The implementer is responsible to acquire the connection details such as username, password, certificate, etc. You might even need to sign a contract or agreement with the supplier before implementing this connector. Please contact the client's application manager to coordinate the connector requirements.
@@ -9,7 +9,7 @@
 
 ## Table of contents
 
-- [HelloID-Conn-Prov-Target-X-Trend](#helloid-conn-prov-target-X-Trend)
+- [HelloID-Conn-Prov-Target-X-Tend](#helloid-conn-prov-target-x-tend)
   - [Table of contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Getting started](#getting-started)
@@ -19,15 +19,15 @@
     - [Available lifecycle actions](#available-lifecycle-actions)
     - [Field mapping](#field-mapping)
   - [Remarks](#remarks)
+    - [Only correlates and updates](#only-correlates-and-updates)
   - [Development resources](#development-resources)
     - [API endpoints](#api-endpoints)
-    - [API documentation](#api-documentation)
   - [Getting help](#getting-help)
   - [HelloID docs](#helloid-docs)
 
 ## Introduction
 
-_HelloID-Conn-Prov-Target-X-Trend_ is a _target_ connector. _X-Trend_ provides a set of REST API's that allow you to programmatically interact with its data.
+_HelloID-Conn-Prov-Target-X-Tend_ is a _target_ connector. _X-Tend_ provides a set of REST API's that allow you to programmatically interact with its data.
 
 ## Getting started
 
@@ -47,7 +47,7 @@ The following settings are required to connect to the API.
 
 ### Correlation configuration
 
-The correlation configuration is used to specify which properties will be used to match an existing account within _X-Trend_ to a person in _HelloID_.
+The correlation configuration is used to specify which properties will be used to match an existing account within _X-Tend_ to a person in _HelloID_.
 
 | Setting                   | Value                             |
 | ------------------------- | --------------------------------- |
@@ -76,7 +76,7 @@ The field mapping can be imported by using the _fieldMapping.json_ file.
 ## Remarks
 
 ### Only correlates and updates
-- This connector is not a fully fletched connector with an create, enable and disable. This connector only correlates the user based on personnelNumber and then populates the email and UPN field in X-Trend.
+- This connector is not a fully fletched connector with an create, enable and disable. This connector only correlates the user based on personnelNumber and then populates the email and UPN field in X-Tend.
 
 - Because this connector only correlated and updates, enabling correlation in the correlation configuration is necessary for this connector. 
 

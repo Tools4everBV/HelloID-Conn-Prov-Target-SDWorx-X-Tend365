@@ -1,5 +1,5 @@
 #################################################
-# HelloID-Conn-Prov-Target-X-Trend-Create
+# HelloID-Conn-Prov-Target-X-Tend-Create
 # PowerShell V2
 #################################################
 
@@ -7,7 +7,7 @@
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor [System.Net.SecurityProtocolType]::Tls12
 
 #region functions
-function Resolve-X-TrendError {
+function Resolve-X-TendError {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
@@ -107,7 +107,7 @@ try {
     # Process
     switch ($action) {
         'CorrelateAccount' {
-            Write-Information 'Correlating X-Trend account'
+            Write-Information 'Correlating X-Tend account'
 
             $outputContext.Data = $correlatedAccount
             $outputContext.AccountReference = $correlatedAccount.PersonnelNumber
@@ -135,11 +135,11 @@ try {
     $ex = $PSItem
     if ($($ex.Exception.GetType().FullName -eq 'Microsoft.PowerShell.Commands.HttpResponseException') -or
         $($ex.Exception.GetType().FullName -eq 'System.Net.WebException')) {
-        $errorObj = Resolve-X-TrendError -ErrorObject $ex
-        $auditMessage = "Could not create or correlate X-Trend account. Error: $($errorObj.FriendlyMessage)"
+        $errorObj = Resolve-X-TendError -ErrorObject $ex
+        $auditMessage = "Could not create or correlate X-Tend account. Error: $($errorObj.FriendlyMessage)"
         Write-Warning "Error at Line '$($errorObj.ScriptLineNumber)': $($errorObj.Line). Error: $($errorObj.FriendlyMessage)"
     } else {
-        $auditMessage = "Could not create or correlate X-Trend account. Error: $($ex.Exception.Message)"
+        $auditMessage = "Could not create or correlate X-Tend account. Error: $($ex.Exception.Message)"
         Write-Warning "Error at Line '$($ex.InvocationInfo.ScriptLineNumber)': $($ex.InvocationInfo.Line). Error: $($ex.Exception.Message)"
     }
     $outputContext.AuditLogs.Add([PSCustomObject]@{
