@@ -20,7 +20,7 @@
     },
     {
       "Name": "SDFCMUPN",
-      "Description": "",
+      "Description": "User Principal Name",
       "Type": "Text",
       "MappingActions": [
         {

@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com), and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [1.1.0] - 14-05-2025
+
+### Added
+- Added property comparison in the update script. With 'No changes' functionality.
+
 ## [1.0.1] - 24-04-2025
 
 ### Changed

@@ -39,11 +39,10 @@ The following settings are required to connect to the API.
 
 | Setting      | Description                             | Mandatory |
 | ------------ | ----------------------------------------| --------- |
-| ClientId     | The client id to connect to the API     | Yes       |
-| ClientSecret | The client secret to connect to the API | Yes       |
-| TenantId     | The tenant id to connect to the API     | Yes       |
+| ClientId     | The Client Id to connect to the API     | Yes       |
+| ClientSecret | The Client Secret to connect to the API | Yes       |
+| TenantId     | The Tenant Id to connect to the API     | Yes       |
 | BaseUrl      | The URL to the API                      | Yes       |
-| TokenBaseUrl | The URL to retrieve an access token     | Yes       |
 
 ### Correlation configuration
 
@@ -76,15 +75,15 @@ The field mapping can be imported by using the _fieldMapping.json_ file.
 ## Remarks
 
 ### Only correlates and updates
-- This connector is not a fully fletched connector with an create, enable and disable. This connector only correlates the user based on personnelNumber and then populates the email and UPN field in X-Tend.
+- This connector is not a fully-fledged connector with a complete user lifecycle. It only correlates users based on the personnelNumber and populates the email and UPN fields in X-Tend.
 
-- Because this connector only correlated and updates, enabling correlation in the correlation configuration is necessary for this connector. 
+- Because this connector only correlated and updates, enabling correlation in the correlation configuration is necessary for this connector.
 
 ## Development resources
 
 ### API endpoints
 
-The following endpoints are used by the connector 
+The following endpoints are used by the connector
 
 | Endpoints                    |
 | ---------------------------- |

@@ -35,8 +35,8 @@ function Resolve-X-TendError {
             $errorDetailsObject = ($httpErrorObj.ErrorDetails | ConvertFrom-Json)
             if ($errorDetailsObject.error_description) {
                 $httpErrorObj.FriendlyMessage = $errorDetailsObject.error_description
-            } elseif ($errorDetailsObject.error.innererror.internalexception.message) {
-                $httpErrorObj.FriendlyMessage = $errorDetailsObject.error.innererror.internalexception.message
+            } elseif ($errorDetailsObject.error.InnerError.InternalException.message) {
+                $httpErrorObj.FriendlyMessage = $errorDetailsObject.error.InnerError.InternalException.message
             }
         } catch {
             $httpErrorObj.FriendlyMessage = $httpErrorObj.ErrorDetails
@@ -86,9 +86,20 @@ try {
         }
     }
     $outputContext.PreviousData = $correlatedAccount
+    $propertiesChanged = @{}
+    if (($null -ne $actionContext.Data.SDFCMUPN) -and ($actionContext.Data.SDFCMUPN -ne $correlatedAccount.SDFCMUPN)) {
+        $propertiesChanged['SDFCMUPN'] = $actionContext.Data.SDFCMUPN
+    }
+    if (($null -ne $actionContext.Data.PrimaryContactEmail) -and ($actionContext.Data.PrimaryContactEmail -ne $correlatedAccount.PrimaryContactEmail)) {
+        $propertiesChanged['PrimaryContactEmail'] = $actionContext.Data.PrimaryContactEmail
+    }
 
     if ($correlatedAccount) {
-        $action = 'UpdateAccount'
+        if ($propertiesChanged.Count -gt 0) {
+            $action = 'UpdateAccount'
+        } else {
+            $action = 'NoChanges'
+        }
     } else {
         $action = 'NotFound'
     }
@@ -97,8 +108,7 @@ try {
     switch ($action) {
         'UpdateAccount' {
             if (-not($actionContext.DryRun -eq $true)) {
-                Write-Information "Updating X-Tend account with accountReference: [$($actionContext.References.Account)]"
-
+                Write-Information "Account property(s) required to update: $($propertiesChanged.Keys -join ', ')"
                 $splatUpdateAccount = @{
                     Uri     = "$($actionContext.Configuration.BaseUrl)/data/SDWorkers(PersonnelNumber='$($actionContext.References.Account)')"
                     Method  = 'PATCH'
@@ -112,7 +122,18 @@ try {
 
             $outputContext.Success = $true
             $outputContext.AuditLogs.Add([PSCustomObject]@{
-                    Message = 'Update account was successful, UPN and Email properties populated'
+                    Message = "Update account was successful, Account property(s) updated: [$($propertiesChanged.Keys -join ', ')]"
+                    IsError = $false
+                })
+            break
+        }
+
+        'NoChanges' {
+            Write-Information "No changes to X-Tend account with accountReference: [$($actionContext.References.Account)]"
+
+            $outputContext.Success = $true
+            $outputContext.AuditLogs.Add([PSCustomObject]@{
+                    Message = 'No changes will be made to the account during enforcement'
                     IsError = $false
                 })
             break
@@ -129,7 +150,7 @@ try {
         }
     }
 } catch {
-    $outputContext.Success  = $false
+    $outputContext.Success = $false
     $ex = $PSItem
     if ($($ex.Exception.GetType().FullName -eq 'Microsoft.PowerShell.Commands.HttpResponseException') -or
         $($ex.Exception.GetType().FullName -eq 'System.Net.WebException')) {
