@@ -1,5 +1,5 @@
 #################################################
-# HelloID-Conn-Prov-Target-X-Tend-Create
+# HelloID-Conn-Prov-Target-SDWorx-X-Tend365-Create
 # PowerShell V2
 #################################################
 
