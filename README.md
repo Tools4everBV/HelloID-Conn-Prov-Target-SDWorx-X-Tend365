@@ -1,4 +1,4 @@
-# HelloID-Conn-Prov-Target-X-Tend
+#  HelloID-Conn-Prov-Target-SDWorx-X-Tend365
 
 > [!IMPORTANT]
 > This repository contains the connector and configuration code only. The implementer is responsible to acquire the connection details such as username, password, certificate, etc. You might even need to sign a contract or agreement with the supplier before implementing this connector. Please contact the client's application manager to coordinate the connector requirements.
@@ -9,7 +9,7 @@
 
 ## Table of contents
 
-- [HelloID-Conn-Prov-Target-X-Tend](#helloid-conn-prov-target-x-tend)
+- [HelloID-Conn-Prov-Target-SDWorx-X-Tend365](#helloid-conn-prov-target-sdworx-x-tend365)
   - [Table of contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Getting started](#getting-started)
@@ -27,7 +27,7 @@
 
 ## Introduction
 
-_HelloID-Conn-Prov-Target-X-Tend_ is a _target_ connector. _X-Tend_ provides a set of REST API's that allow you to programmatically interact with its data.
+_HelloID-Conn-Prov-Target-SDWorx-X-Tend365_ is a _target_ connector. _SD Worx X-Tend 365_ provides a set of REST API's that allow you to programmatically interact with its data.
 
 ## Getting started
 
@@ -46,7 +46,7 @@ The following settings are required to connect to the API.
 
 ### Correlation configuration
 
-The correlation configuration is used to specify which properties will be used to match an existing account within _X-Tend_ to a person in _HelloID_.
+The correlation configuration is used to specify which properties will be used to match an existing account within _SD Worx X-Tend 365_ to a person in _HelloID_.
 
 | Setting                   | Value                             |
 | ------------------------- | --------------------------------- |
@@ -75,7 +75,7 @@ The field mapping can be imported by using the _fieldMapping.json_ file.
 ## Remarks
 
 ### Only correlates and updates
-- This connector is not a fully-fledged connector with a complete user lifecycle. It only correlates users based on the personnelNumber and populates the email and UPN fields in X-Tend.
+- This connector is not a fully-fledged connector with a complete user lifecycle. It only correlates users based on the personnelNumber and populates the email and UPN fields in SD Worx X-Tend 365.
 
 - Because this connector only correlated and updates, enabling correlation in the correlation configuration is necessary for this connector.
 

@@ -1,5 +1,5 @@
 #################################################
-# HelloID-Conn-Prov-Target-X-Tend-Update
+#  HelloID-Conn-Prov-Target-SDWorx-X-Tend365-Update
 # PowerShell V2
 #################################################
 
